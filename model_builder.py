@@ -23,7 +23,7 @@ def main():
     trained_model = train_model(model, training_data, features, output_variable)
 
     # STEP 7: EVALUATE THE TRAINED MODEL
-    score = evaluate_model(model, test_data, features, output_variable)
+    #score = evaluate_model(model, test_data, features, output_variable)
 
     # STEP 8: Prediction
     ip = data[data['id']==5309101200]
@@ -32,7 +32,7 @@ def main():
 
     print(ip[[output_variable]])
 
-    print(score)
+    #print(score)
 
 """*************************************************************************************"""
 

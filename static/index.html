@@ -3,8 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <title>Amne.co Data Science</title>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="css/main.css"/>
 </head>
 <body>
-Welcome !
+<div class="container">
+    <h3 class="page-header">Amne.Co</h3>
+    <div class="row top-buffer">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <form>
+                        <h4 class="form-header">House Price Estimator</h4>
+                        <div class="form-group">
+                            <label for="bedrooms">No. Of Bedrooms</label>
+                            <input name="bedrooms" id="bedrooms" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="bathrooms">No. Of Bathrooms</label>
+                            <input name="bathrooms" id="bathrooms" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="sqft_living">Total square footage of the house</label>
+                            <input name="sqft_living" id="sqft_living" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="sqft_lot">Lot size of the house</label>
+                            <input name="sqft_lot" id="sqft_lot" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="floors">No Of floors</label>
+                            <input name="floors" id="floors" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="zipcode">Zip Code</label>
+                            <input name="zipcode" id="zipcode" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <input name="submitbtn" id="submitbtn" type="submit" class="btn btn-lg btn-block btn-success">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-default price-panel">
+                <div class="panel-body">
+                    <h4 class="price-panel-header"> Estimated Price :</h4>
+                    <div class="price">
+                        <span class="pricenumber">0</span>
+                        <span class="priceunit">USD</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="http://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </body>
 </html>

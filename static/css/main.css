@@ -1,0 +1,30 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    background-image: url("../img/bg-house-1.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    font-family: sans-serif !important;
+}
+
+
+.page-header {
+text-align:center;
+}
+
+.form-header {
+text-align:center;
+}
+
+.price {
+text-align: center;
+}
+
+.price-panel-header {
+text-align: center;
+}
+
+.price-panel {
+   margin-top: 200px;
+}

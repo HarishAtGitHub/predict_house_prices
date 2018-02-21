@@ -25,34 +25,10 @@ class AVM:
         self.__trained_model = AVM.__train_model(self.__model, training_data, self.__features, self.__output_variable)
 
     def __predict(self, data):
-        '''ip = self.d[self.d['id'] == 5309101200]
-        df2 = ip[self.__features]'''
-        df1 = data
-        '''print(df1)
-        print(df2)
-        #self.__diff(df1, df2)'''
-        return self.__model.predict(df1)[0][0]
-
-    @classmethod
-    def __diff(cls, df1, df2):
-        df1.sort_index(inplace=True)
-        df2.sort_index(inplace=True)
-        df1.reset_index(drop=True)
-        df2.reset_index(drop=True)
-        ne_stacked = (df1 != df2).stack()
-        changed = ne_stacked[ne_stacked]
-        changed.index.names = ['id', 'col']
-        print(changed)
+        return self.__model.predict(data)[0][0]
 
     @classmethod
     def __get_df(cls, input):
-        '''df = pandas.DataFrame({'bedrooms': [str(input['bedrooms'])],
-                               'bathrooms': [str(input['bathrooms'])],
-                               'sqft_living': [str(input['sqft_living'])],
-                               'sqft_lot': [str(input['sqft_lot'])],
-                               'floors':[str(input['floors'])],
-                               'zipcode':[str(input['zipcode'])]
-                               })'''
         df = pandas.DataFrame([[input['bedrooms'],
                                input['bathrooms'],
                                input['sqft_living'],
@@ -90,7 +66,7 @@ class AVM:
         return output_variable
 
     @classmethod
-    def evaluate_model(cls, model, data, features, output_variable):
+    def __evaluate_model(cls, model, data, features, output_variable):
         size = len(data)
         test_input = data[features]
         expected_output = data[output_variable].values.reshape(size, 1)

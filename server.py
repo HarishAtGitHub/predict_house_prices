@@ -10,7 +10,7 @@ API_PATH = '/ml/api/'
 API_VERSION = 'v1.0'
 API_PREFIX = API_PATH + API_VERSION
 
-@app.route(API_PATH + API_VERSION + '/price', methods=['GET'])
+@app.route(API_PATH + API_VERSION + '/price', methods=['POST'])
 def price():
     data = {
         'bedrooms': 4,
@@ -20,8 +20,8 @@ def price():
         'floors':1.5,
         'zipcode':98117
     }
+    print(request.data)
     return str(avm.get_price(data))
-    #return '234'
 
 @app.route('/')
 def root():

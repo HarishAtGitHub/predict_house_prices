@@ -25,6 +25,16 @@ text-align: center;
 text-align: center;
 }
 
+.estimator-panel {
+background: rgba(0,0,0,0.5);
+color: white;
+}
+
+.price-panel {
+background: rgba(0,0,0,0.5);
+color: white;
+}
+
 .price-panel {
    margin-top: 200px;
 }

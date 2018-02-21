@@ -33,6 +33,7 @@ color: white;
 .price-panel {
 background: rgba(0,0,0,0.5);
 color: white;
+border-radius: 100%;
 }
 
 .price-panel {

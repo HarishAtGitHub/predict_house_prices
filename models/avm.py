@@ -1,0 +1,105 @@
+import pandas
+import sklearn
+from sklearn.model_selection import train_test_split
+
+
+class AVM:
+    def __init__(self):
+        # STEP 1 : LOAD THE DATA
+        data = AVM.__load_data()
+        self.d = AVM.__load_data()
+
+        # STEP 2 : SPLIT THE DATA TO TRAINING AND TEST SET
+        training_data, test_data = AVM.__split(data, 0.8)
+
+        # STEP 3: CHOOSE A model Mechanism. HERE LET'S CHOOSE LINEAR REGRESSION AND  SEE HOW IT WORKS
+        self.__model = AVM.__choose_model()
+
+        # STEP 4: CHOOSE FEATURES TO BE USED TO TRAIN THE MODEL
+        self.__features = AVM.__choose_features()
+
+        # STEP 5: FINALIZE THE OUTPUT VARIABLE
+        self.__output_variable = AVM.__get_output_variable()
+
+        # STEP 6: TRAIN THE MODEL WITH THE TRAINING SET AND WITH CHOSEN FEATURES
+        self.__trained_model = AVM.__train_model(self.__model, training_data, self.__features, self.__output_variable)
+
+    def __predict(self, data):
+        '''ip = self.d[self.d['id'] == 5309101200]
+        df2 = ip[self.__features]'''
+        df1 = data
+        '''print(df1)
+        print(df2)
+        #self.__diff(df1, df2)'''
+        return self.__model.predict(df1)[0][0]
+
+    @classmethod
+    def __diff(cls, df1, df2):
+        df1.sort_index(inplace=True)
+        df2.sort_index(inplace=True)
+        df1.reset_index(drop=True)
+        df2.reset_index(drop=True)
+        ne_stacked = (df1 != df2).stack()
+        changed = ne_stacked[ne_stacked]
+        changed.index.names = ['id', 'col']
+        print(changed)
+
+    @classmethod
+    def __get_df(cls, input):
+        '''df = pandas.DataFrame({'bedrooms': [str(input['bedrooms'])],
+                               'bathrooms': [str(input['bathrooms'])],
+                               'sqft_living': [str(input['sqft_living'])],
+                               'sqft_lot': [str(input['sqft_lot'])],
+                               'floors':[str(input['floors'])],
+                               'zipcode':[str(input['zipcode'])]
+                               })'''
+        df = pandas.DataFrame([[input['bedrooms'],
+                               input['bathrooms'],
+                               input['sqft_living'],
+                               input['sqft_lot'],
+                               input['floors'],
+                               input['zipcode']]],
+                              columns=['bedrooms', 'bathrooms', 'sqft_living', 'sqft_lot', 'floors', 'zipcode'])
+        return df
+
+    def get_price(self, input):
+        data = AVM.__get_df(input)
+        return self.__predict(data)
+
+    @classmethod
+    def __load_data(cls):
+        return pandas.read_csv("home_data.csv", header=0)
+
+    @classmethod
+    def __split(cls, data, fraction):
+        return train_test_split(data, train_size=0.9)
+
+    @classmethod
+    def __choose_model(cls):
+        from sklearn import linear_model
+        return linear_model.LinearRegression()
+
+    @classmethod
+    def __choose_features(cls):
+        features = ['bedrooms', 'bathrooms', 'sqft_living', 'sqft_lot', 'floors', 'zipcode']
+        return features
+
+    @classmethod
+    def __get_output_variable(cls):
+        output_variable = 'price'
+        return output_variable
+
+    @classmethod
+    def evaluate_model(cls, model, data, features, output_variable):
+        size = len(data)
+        test_input = data[features]
+        expected_output = data[output_variable].values.reshape(size, 1)
+        return model.score(test_input, expected_output)
+
+    @classmethod
+    def __train_model(cls, model, data, features, output_variable):
+        size = len(data)
+        actual_input = data[features]
+        actual_output = data[output_variable].values.reshape(size, 1)
+        trained_model = model.fit(actual_input, actual_output)
+        return trained_model

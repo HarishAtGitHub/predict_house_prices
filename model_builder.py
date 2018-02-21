@@ -27,10 +27,15 @@ def main():
 
     # STEP 8: Prediction
     ip = data[data['id']==5309101200]
+    print('input')
+    print(ip)
+    print('**************************')
     prediction = predict(model, ip, features)
+    print('prediction')
     print(prediction[0][0])
-
-    print(ip[[output_variable]])
+    print('**************************')
+    print('actual')
+    print(ip[[output_variable]].values[0][0])
 
     #print(score)
 

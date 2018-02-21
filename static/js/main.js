@@ -14,7 +14,7 @@ event.preventDefault();
         zipcode: jQuery("#zipcode").val()
         }),
         success: function(data) {
-                   jQuery('.pricenumber').text(data)
+                   jQuery('.pricenumber').text(data.price)
         },
         error: function(xhr, resp, text) {
              console.log(xhr, resp, text);

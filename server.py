@@ -12,7 +12,7 @@ API_PREFIX = API_PATH + API_VERSION
 
 @app.route(API_PATH + API_VERSION + '/price', methods=['POST'])
 def price():
-    return str(avm.get_price((request.get_json())))
+    return jsonify({ 'price' :avm.get_price((request.get_json())) })
 
 @app.route('/')
 def root():

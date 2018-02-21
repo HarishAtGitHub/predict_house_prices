@@ -12,16 +12,7 @@ API_PREFIX = API_PATH + API_VERSION
 
 @app.route(API_PATH + API_VERSION + '/price', methods=['POST'])
 def price():
-    data = {
-        'bedrooms': 4,
-        'bathrooms' :2.25,
-        'sqft_living':2400,
-        'sqft_lot':5350,
-        'floors':1.5,
-        'zipcode':98117
-    }
-    print(request.data)
-    return str(avm.get_price(data))
+    return str(avm.get_price((request.get_json())))
 
 @app.route('/')
 def root():

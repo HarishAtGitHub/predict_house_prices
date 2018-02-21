@@ -2,6 +2,7 @@ import pandas
 import sklearn
 from sklearn.model_selection import train_test_split
 
+""""**********************************************************************************"""
 def main():
     # STEP 1 : LOAD THE DATA
     data = load_data()
@@ -24,8 +25,20 @@ def main():
     # STEP 7: EVALUATE THE TRAINED MODEL
     score = evaluate_model(model, test_data, features, output_variable)
 
+    # STEP 8: Prediction
+    ip = data[data['id']==5309101200]
+    prediction = predict(model, ip, features)
+    print(prediction[0][0])
+
+    print(ip[[output_variable]])
+
     print(score)
 
+"""*************************************************************************************"""
+
+"""
+ UTIL FUNCTIONS
+"""
 def load_data():
     return pandas.read_csv("home_data.csv", header=0)
 
@@ -34,7 +47,7 @@ def load_data():
    fraction here is a number between 1 to 10
 """
 def split(data, fraction):
-    return train_test_split(data, train_size=0.8)
+    return train_test_split(data, train_size=0.9)
 
 def choose_model():
     from sklearn import linear_model
@@ -61,6 +74,8 @@ def train_model(model, data, features, output_variable):
     trained_model = model.fit(actual_input, actual_output)
     return trained_model
 
+def predict(model, data, features):
+    return model.predict(data[features])
 
 if __name__ == "__main__":
     main()
